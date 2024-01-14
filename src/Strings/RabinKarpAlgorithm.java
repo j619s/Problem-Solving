@@ -40,7 +40,6 @@ public class RabinKarpAlgorithm {
                 occurrences.add(i);
             }
         }
-
         System.out.println(occurrences);
     }
 }
