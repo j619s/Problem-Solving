@@ -31,6 +31,7 @@ public class RabinKarpAlgorithm {
         long h_s = 0;                       // calculate hash value for pattern s
         for(int i = 0; i < lenS; i++){
             h_s = (h_s  + (s.charAt(i) - 'a' + 1) * pPow[i]) % m;
+
         }
 
         List<Integer> occurrences = new ArrayList<>();

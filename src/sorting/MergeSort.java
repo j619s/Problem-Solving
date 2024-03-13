@@ -11,6 +11,17 @@ public class MergeSort {
         System.out.println(Arrays.toString(arr));
     }
 
+    public void sort(int[] arr, int l, int r){
+        if(l < r) {
+            int mid = l + (r - l) / 2;
+
+            sort(arr, l, mid);
+            sort(arr, mid + 1, r);
+
+            merge(arr, l, mid, r);
+        }
+    }
+
     public void merge(int[] arr, int l, int m, int r){
         int n1 = m - l + 1;
         int n2 = r - m;
@@ -46,20 +57,6 @@ public class MergeSort {
             arr[k] = R[j];
             j++;
             k++;
-        }
-
-    }
-
-    public void sort(int[] arr, int l, int r){
-        if(l < r) {
-
-
-            int mid = l + (r - l) / 2;
-
-            sort(arr, l, mid);
-            sort(arr, mid + 1, r);
-
-            merge(arr, l, mid, r);
         }
     }
 }

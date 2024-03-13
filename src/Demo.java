@@ -31,5 +31,18 @@ public class Demo {
         // Print the sorted HashMap
         System.out.println("Original HashMap: " + hashMap);
         System.out.println("Sorted HashMap: " + sortedHashMap);
+        System.out.println('z' - 'a');
+
+
+        int k = 235;
+        String str = String.valueOf(k);
+        int start = -1;
+        int temp = Integer.parseInt(String.valueOf(str.charAt(0)));
+        while(k!= 0){
+            start = k / 10;
+        }
+
+        System.out.println("start: " + start);
+        System.out.println(temp);
     }
 }
