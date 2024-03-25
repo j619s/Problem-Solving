@@ -1,6 +1,12 @@
 public class Power {
     public static void main(String[] args) {
-        System.out.println(power(9,9));
+        //System.out.println(power(9,9));
+
+        String s = "abcdef";
+        int a = s.charAt(0);
+        char ch = s.charAt(4);
+        System.out.println(a);
+        System.out.println(ch - 'a');
     }
 
     static int power(int n, int p){

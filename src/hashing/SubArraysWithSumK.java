@@ -5,8 +5,8 @@ import java.util.Map;
 
 public class SubArraysWithSumK {
     public static void main(String[] args) {
-        int[] arr = {1,4,20,3,10,5};
-        int k = 33;
+        int[] arr = {1,2,3};
+        int k = 3;
         System.out.println(subArraySum(arr, arr.length, k));
     }
 
@@ -14,20 +14,16 @@ public class SubArraysWithSumK {
         Map<Integer, Integer> freq = new HashMap<>();
         int count = 0;
         int prefSum = 0;
-
+        freq.put(0, 1);
         for(int x : arr){
             prefSum += x;
-
-            if(prefSum == k){
-                count++;
-            }
 
             if(freq.containsKey(prefSum - k)){
                 count += freq.get(prefSum - k);
             }
 
             freq.put(prefSum, freq.getOrDefault(prefSum, 0) + 1);
-
+            System.out.println(freq);
         }
 
         return count;
