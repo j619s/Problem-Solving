@@ -9,7 +9,9 @@ public class StockSpan {
         int n = price.length;
         System.out.println(calculateSpan(price, n));
     }
+    // we will use the concept of neagrest greater to left...
 
+    
     public static List<Integer> calculateSpan(int[] prices, int n){
         List<Integer> res = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
