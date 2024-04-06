@@ -25,7 +25,8 @@ public class TrappingRainWater {
         for(int i = n - 2; i >= 0; i--){
             rightMax[i] = Math.max(height[i], rightMax[i + 1]);
         }
-
+//        System.out.println(Arrays.toString(leftMax));
+//        System.out.println(Arrays.toString(rightMax));
         // at every index it will store water -> leftWall - rightWall - current wall.
 
         for(int i = 0; i < n - 1; i++){

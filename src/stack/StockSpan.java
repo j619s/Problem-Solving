@@ -11,7 +11,6 @@ public class StockSpan {
     }
     // we will use the concept of nearest greater to left...
 
-    
     public static int[] calculateSpan(int[] prices, int n){
         int[] res = new int[n];
         Stack<Integer> stack = new Stack<>();
