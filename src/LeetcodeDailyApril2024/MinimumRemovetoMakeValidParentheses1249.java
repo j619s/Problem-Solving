@@ -43,7 +43,6 @@ public class MinimumRemovetoMakeValidParentheses1249 {
     }
 
     //Approach2: using count
-
     public static String minRemoveToMakeValidII(String s){
         int count = 0;
 
