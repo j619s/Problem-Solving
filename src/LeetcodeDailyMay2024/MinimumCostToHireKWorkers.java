@@ -18,13 +18,16 @@ public class MinimumCostToHireKWorkers {
         for(int i = 0; i < n ; i++){
             wageToQuality.add(new Pair((double) wage[i] / quality[i], quality[i]));
         }
+//        wageToQuality.sort(new Comparator<Pair>() {
+//            @Override
+//            public int compare(Pair o1, Pair o2) {
+//                return o1.ratio.compareTo(o2.ratio);
+//            }
+//        });
 
-        wageToQuality.sort(new Comparator<Pair>() {
-            @Override
-            public int compare(Pair o1, Pair o2) {
-                return o1.ratio.compareTo(o2.ratio);
-            }
-        });
+        //wageToQuality.sort((o1, o2) -> o1.ratio.compareTo(o2.ratio));
+
+        wageToQuality.sort(Comparator.comparing(o -> o.rate));
 
         PriorityQueue<Integer> highestQualityWorkers = new PriorityQueue<>(Collections.reverseOrder());
         for(int i = 0; i < n; i++){
@@ -36,28 +39,27 @@ public class MinimumCostToHireKWorkers {
             }
 
             if(highestQualityWorkers.size() == k){
-                totalCost = Math.min(totalCost, currentTotalQuality * wageToQuality.get(i).ratio);
+                totalCost = Math.min(totalCost, currentTotalQuality * wageToQuality.get(i).rate);
             }
         }
-        System.out.println(highestQualityWorkers);
 
         return totalCost;
     }
 }
 
 class Pair{
-    Double ratio;
+    Double rate;
     Integer quality;
 
     public Pair(Double ratio, Integer quality){
-        this.ratio = ratio;
+        this.rate = ratio;
         this.quality = quality;
     }
 
     @Override
     public String toString() {
         return "Pair{" +
-                "ratio=" + ratio +
+                "ratio=" + rate +
                 ", quality=" + quality +
                 '}';
     }
