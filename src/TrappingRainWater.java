@@ -1,9 +1,12 @@
+import java.util.ArrayDeque;
+
 public class TrappingRainWater {
     //It can also be solved using stack.
     
     public static void main(String[] args) {
         int[] arr = {4,2,0,3,2,5};
-        int water = getWater(arr, arr.length);
+        //int water = getWater(arr, arr.length);
+        int water = trap(arr);
         System.out.println(water);
     }
 
@@ -34,5 +37,30 @@ public class TrappingRainWater {
         }
 
         return quantity;
+    }
+
+    // Approach 2: monotonic stack.
+
+    public static int trap(int[] height){
+        ArrayDeque<Integer> stack = new ArrayDeque<>();
+        int trapped = 0;
+
+        for(int i = 0; i < height.length; i++){
+
+            while(!stack.isEmpty() && height[stack.peek()] < height[i]){
+                int top = height[stack.peek()];
+                stack.pop();
+                if(stack.isEmpty()) break;
+
+                int width = i - stack.peek() - 1;
+                int length = Math.min(height[i], height[stack.peek()]) - top;
+
+                trapped += length * width;
+            }
+
+            stack.push(i);
+        }
+
+        return trapped;
     }
 }

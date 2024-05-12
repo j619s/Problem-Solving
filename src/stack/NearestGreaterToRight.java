@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class NearestGreaterToRight {
     public static void main(String[] args) {
-            int[] arr = {1,3,2,4};
+            int[] arr = {1,4,3,3,2,2,1,9};
             int n = arr.length;
         System.out.println(ngr(arr, n));
     }

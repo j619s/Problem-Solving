@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NearestSmallerToRight {
     public static void main(String[] args) {
-        int[] arr = {4, 5, 2, 10, 8};
+        int[] arr = {1,4,3,3,2,2,1,9};
         System.out.println(nsr(arr));
     }
 

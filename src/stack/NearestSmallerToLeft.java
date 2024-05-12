@@ -6,7 +6,7 @@ import java.util.List;
 
 public class NearestSmallerToLeft {
     public static void main(String[] args) {
-        int[] arr = {6, 2, 5, 4, 5, 1, 6};
+        int[] arr = {1,4,3,3,2,2,1,9};
 
         System.out.println(nsl(arr));
     }
