@@ -38,6 +38,12 @@ public class MinimumCostToHireKWorkers {
                 currentTotalQuality -= highestQualityWorkers.poll();
             }
 
+            // we remove the worker with the highest quality because,
+            // the amount we pay is decided by the highest rate (wage/quality)
+            // so, as our input is sorted based on rate.
+            // which means that as we iterate over the array, the rate will be increasing
+            // thus removing the worker with the highest quality,will make totalCost lower.
+
             if(highestQualityWorkers.size() == k){
                 totalCost = Math.min(totalCost, currentTotalQuality * wageToQuality.get(i).rate);
             }
