@@ -20,6 +20,7 @@ public class MostProfitAssigningWork {
             int max = Math.max(profit[i], difficultyToProfitMap.getOrDefault(difficulty[i], -1));
             difficultyToProfitMap.put(difficulty[i], max);
         }
+        System.out.println(difficultyToProfitMap);
         int maxProfitTillHere = 0;
         for(Map.Entry<Integer, Integer> entry : difficultyToProfitMap.entrySet()){
             int key = entry.getKey();
@@ -27,6 +28,7 @@ public class MostProfitAssigningWork {
             maxProfitTillHere = Math.max(maxProfitTillHere, val);
             difficultyToProfitMap.put(key, maxProfitTillHere);
         }
+        System.out.println(difficultyToProfitMap);
 
         Arrays.sort(difficulty);
         for(int i = 0; i < worker.length; i++){
