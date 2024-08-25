@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Queue;
 
 public class BfsGraph {
+    public static final int[][] dirs = {{-1, 0}, {0, -1}, {0, 1}, {1, 0}};
+
     public static void main(String[] args) {
 
     }
@@ -53,4 +55,34 @@ public class BfsGraph {
             }
         }
     }
+
+    public void bfs(int[][] grid, int row, int col, boolean[][] visited){
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{row, col});
+        visited[row][col] = true;
+
+        while(!q.isEmpty()){
+            int[] curr = q.poll();
+            int currRow = curr[0];
+            int currCol = curr[1];
+
+            for(int[] dir : dirs){
+                int newRow = currRow + dir[0];
+                int newCol = currCol + dir[1];
+
+                if(newRow >= 0 && newRow < grid.length && newCol >= 0 && newCol < grid[0].length
+                        && !visited[newRow][newCol]){
+                    q.offer(new int[]{newRow, newCol});
+                    visited[newRow][newCol] = true;
+                }
+
+            }
+        }
+
+
+    }
+
+    
+
+
 }
