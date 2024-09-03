@@ -56,6 +56,7 @@ public class TopologicalSorting {
             }
         }
 
+
         while(!q.isEmpty()){
             int u = q.poll();
             System.out.print(u + " ");
