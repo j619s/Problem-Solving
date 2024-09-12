@@ -22,9 +22,24 @@ public class StronglyConnectedComponents {
 
         // reverse the directed graph
         ArrayList<ArrayList<Integer>> revAdj = new ArrayList<>();
+        for(int i = 0; i< V; i++){
+            revAdj.add(new ArrayList<>());
+        }
+
+        for(int u = 0; u < V; u++){
+            for(int v : adj.get(u)){
+                revAdj.get(v).add(u);
+            }
+        }
 
         // count the connected components by calling dfs in topological order on the reversed graph
-
+        while(!stack.isEmpty()){
+            int currNode = stack.pop();
+            if(!visited[currNode]){
+                dfs(adj,currNode, visited);
+                connectedComponents++;
+            }
+        }
 
         return connectedComponents;
     }

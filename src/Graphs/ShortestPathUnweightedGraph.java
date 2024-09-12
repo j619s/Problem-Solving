@@ -17,7 +17,14 @@ public class ShortestPathUnweightedGraph {
         visited[s] = true;
 
         while(!q.isEmpty()){
-            
+            int u = q.poll();
+            for(int v : adj.get(u)){
+                if(!visited[v]){
+                    distance[v] = distance[u] + 1;
+                    visited[v] = true;
+                    q.add(v);
+                }
+            }
         }
 
 

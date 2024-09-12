@@ -12,9 +12,6 @@ public class DijkstrasAlgorithm {
 //        for(int i = 0; i < V; i++){
 //            adj.add(new ArrayList<ArrayList<Integer>>());
 //        }
-        int[][] d = new int[5][6];
-        Arrays.fill(d, Integer.MAX_VALUE);
-        System.out.println(Arrays.deepToString(d));
 
     }
 
@@ -36,7 +33,7 @@ public class DijkstrasAlgorithm {
                 int newNode = neighbour.get(0);
                 int dist = neighbour.get(1);
 
-                if(currDistance + dist < res[newNode]){
+                if(currDistance + dist < res[newNode]){     // relax operation
                     pq.remove(new int[]{res[newNode], newNode});
                     res[newNode] = currDistance + dist;
                     pq.add(new int[]{currDistance + dist, newNode});
