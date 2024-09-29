@@ -37,33 +37,33 @@ public class BridgesInGraph {
 
     public static List<List<Integer>> isBridge(int V, ArrayList<ArrayList<Integer>> adj){
         boolean[] visited = new boolean[V];
-        int[] tin = new int[V]; // time at which dfs is called i.e. discovery time
-        int[] up  = new int[V]; // int[] low, smallest discovery time reachable from node v
+        int[] disc = new int[V]; // time at which dfs is called i.e. discovery time
+        int[] low  = new int[V]; // int[] low, smallest discovery time reachable from node v
 
         List<List<Integer>> bridges = new ArrayList<>();
-        dfs(0, -1, visited, adj, tin, up, bridges);
+        dfs(0, -1, visited, adj, disc, low, bridges);
         return bridges;
     }
 
-    public static void dfs(int u, int parent, boolean[] visited, ArrayList<ArrayList<Integer>> adj, int[] tin, int[] low, List<List<Integer>> bridges){
+    public static void dfs(int u, int parent, boolean[] visited, ArrayList<ArrayList<Integer>> adj, int[] disc, int[] low, List<List<Integer>> bridges){
         visited[u] = true;
-        tin[u] = low[u] = timer;
+        disc[u] = low[u] = timer;
         timer++;
 
         for(int v : adj.get(u)){
             if(v == parent){
                 continue;
             } else if(!visited[v]){
-                dfs(v, u, visited, adj, tin, low, bridges);
+                dfs(v, u, visited, adj, disc, low, bridges);
                 low[u] = Math.min(low[u], low[v]);
-                if(low[v] > tin[u]){
+                if(disc[u] < low[v]){
                     bridges.add(Arrays.asList(u, v));
                     if(v == 3 && u == 6 || v == 6 && u == 3){
                         flag = true;
                     }
                 }
             } else {
-                low[u] = Math.min(low[u], tin[v]);
+                low[u] = Math.min(low[u], disc[v]);
             }
         }
     }

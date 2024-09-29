@@ -11,13 +11,13 @@ public class ArticulationPoints {
 
     public static List<Integer> articulationPoints(int V, ArrayList<ArrayList<Integer>> adj){
         int[] visited = new int[V];
-        int[] tin = new int[V]; // discovery time : time at which dfs for u is called
+        int[] disc = new int[V]; // discovery time : time at which dfs for u is called
         int[] low = new int[V]; // smallest discovery time reachable from u consider both types of edges
         int[] mark = new int[V]; // which are articulation points
 
         for(int i = 0; i < V; i++){
             if(visited[i] == 0){
-                dfs(i, -1, adj, visited, tin, low, mark);
+                dfs(i, -1, adj, visited, disc, low, mark);
             }
         }
 
@@ -34,9 +34,9 @@ public class ArticulationPoints {
         return res;
     }
 
-    public static void dfs(int u, int parent, ArrayList<ArrayList<Integer>> adj, int[] visited, int[] tin, int[] low, int[] mark){
+    public static void dfs(int u, int parent, ArrayList<ArrayList<Integer>> adj, int[] visited, int[] disc, int[] low, int[] mark){
         visited[u] = 1;
-        tin[u] = low[u] = time;
+        disc[u] = low[u] = time;
         time++;
 
         int children = 0;
@@ -44,15 +44,15 @@ public class ArticulationPoints {
             if(v == parent) continue;
 
             if(visited[v] == 0){
-                dfs(v, u, adj, visited, tin, low, mark);
+                dfs(v, u, adj, visited, disc, low, mark);
                 low[u] = Math.min(low[u], low[v]);
 
-                if(low[v] >= tin[u] && parent != -1){
+                if(disc[u] <= low[v] && parent != -1){
                     mark[u] = 1;
                 }
                 children++;
             } else {
-                low[u] = Math.min(low[u], tin[v]);
+                low[u] = Math.min(low[u], disc[v]);
             }
         }
 

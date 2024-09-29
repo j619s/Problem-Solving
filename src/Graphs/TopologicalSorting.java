@@ -21,6 +21,17 @@ public class TopologicalSorting {
 
         System.out.println("Following is a Topological Sort of");
         topologicalSort(adj,V);
+        // topsort using dfs
+        boolean[] visited = new boolean[V];
+        List<Integer> topSort = new ArrayList<>();
+        for(int i = 0; i < V; i++){
+            if(!visited[i]){
+                dfs(adj, i, visited, topSort);
+            }
+        }
+
+        // print the topsort list in the reverse order;
+
     }
 
     public static void addEdge(int u, int v, List<List<Integer>> adj){
@@ -56,7 +67,6 @@ public class TopologicalSorting {
             }
         }
 
-
         while(!q.isEmpty()){
             int u = q.poll();
             System.out.print(u + " ");
@@ -66,6 +76,17 @@ public class TopologicalSorting {
                 }
             }
         }
+
+    }
+
+    static void dfs(List<List<Integer>> adj, int u, boolean[] visited, List<Integer> topSort){
+        visited[u] = true;
+        for(int v : adj.get(u)){
+            if(!visited[v]){
+                dfs(adj, v, visited, topSort);
+            }
+        }
+        topSort.add(u);
 
     }
 
