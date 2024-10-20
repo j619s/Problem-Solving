@@ -2,17 +2,18 @@ package DynamicProgramming;
 
 public class ClimbingStairs {
     public static void main(String[] args) {
-        long start = System.currentTimeMillis();
+        //long start = System.currentTimeMillis();
         int n = 40;
         int[] memo = new int[n + 1];
         System.out.println(climbStairsII(n, memo));
-        long end = System.currentTimeMillis();
-        System.out.println(end - start);
+        System.out.println(climbStairsIV(n));
+        //long end = System.currentTimeMillis();
+        //System.out.println(end - start);
 
     }
 
     public static int climbStairs(int n){
-        if(n == 1 || n == 2) return n;
+        if(n == 0 || n == 1) return 1;
 
         return climbStairs(n - 1) + climbStairs(n - 2);
     }
@@ -49,14 +50,18 @@ public class ClimbingStairs {
         return dp[n];
     }
 
-//    public int climbStairsIV(int n){
-//        if(n <= 1) return 1;
-//
-//        int prev1 = 1;
-//        int prev2 = 2;
-//        int res = 1;
-//        for(int i = 3; i <= n; i++){
-//            res = prev
-//        }
-//    }
+    public static int climbStairsIV(int n){
+        if(n <= 1) return 1;
+
+        int prev1 = 1;
+        int prev2 = 2;
+
+        for(int i = 3; i <= n; i++){
+            int res = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = res;
+        }
+
+        return prev2;
+    }
 }

@@ -1,13 +1,27 @@
 package Graphs;
+
 import java.util.*;
 
 public class ShortestPathInDirectedAcyclicGraph {
     public static void main(String[] args) {
+        int n = 10;
+        int m = 24;
+        int[][] edges = new int[m][3];
+        Scanner sc = new Scanner(System.in);
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < 3; j++){
+                edges[i][j] = sc.nextInt();
+            }
+        }
+        sc.close();
+
+        System.out.println(Arrays.toString(shortestPath(n, m, edges)));
 
     }
 
-    private void topSort(int u, List<List<int[]>> adj, boolean[] visited, Stack<Integer> st){
+    private static void topSort(int u, List<List<int[]>> adj, boolean[] visited, Stack<Integer> st){
         visited[u] = true;
+
         for(int i = 0; i < adj.get(u).size(); i++){
             int v = adj.get(u).get(i)[0];
             if(!visited[v]){
@@ -17,7 +31,7 @@ public class ShortestPathInDirectedAcyclicGraph {
         st.add(u);
     }
 
-    public int[] shortestPath(int n, int m, int[][] edges){
+    public static int[] shortestPath(int n, int m, int[][] edges){
         List<List<int[]>> adj = new ArrayList<>();
         for(int i = 0; i < n; i++){
             adj.add(new ArrayList<>());
@@ -38,7 +52,7 @@ public class ShortestPathInDirectedAcyclicGraph {
         }
 
         int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+        Arrays.fill(dist, (int)1e9);
         dist[0] = 0;
         while(!st.isEmpty()){
             int u = st.pop();
@@ -48,6 +62,12 @@ public class ShortestPathInDirectedAcyclicGraph {
                 if(dist[u] + wt < dist[v]){
                     dist[v] = dist[u] + wt;
                 }
+            }
+        }
+
+        for(int i = 0;i < n; i++){
+            if(dist[i] == (int)1e9){
+                dist[i] = -1;
             }
         }
 
